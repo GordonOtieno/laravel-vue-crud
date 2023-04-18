@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTaskRequest extends FormRequest
@@ -22,7 +23,7 @@ class StoreTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required','unique:tasks,name'],
+            'name' => ['required',Rule::unique('tasks')->ignore($this->task)],
             'description' =>['required','max:100'],
             'due_date' => ['required'],
             'status_id'=> ['required']
