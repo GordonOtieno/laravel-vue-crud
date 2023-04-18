@@ -3,13 +3,17 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    use SoftDeletes; // Add SoftDeletes trait
+    protected $dates = ['deleted_at'];
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -18,8 +22,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'email_address',
         'password',
     ];
 
@@ -43,7 +46,10 @@ class User extends Authenticatable
     ];
 
     //relationship with tasks
-    public function tasks(){
-        return $this->hasMany(Task::class, 'user_id');
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class, 'user_tasks', 'user_id', 'task_id')
+            ->withPivot('due_date', 'start_time', 'end_time', 'remarks', 'status_id')
+            ->withTimestamps();
     }
 }
