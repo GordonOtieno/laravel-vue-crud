@@ -11,6 +11,8 @@ class Status extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $table = 'status';
+    
     protected $fillable = [
         'name',
     ];
