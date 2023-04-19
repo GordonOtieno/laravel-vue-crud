@@ -2,6 +2,5 @@
 </script>
 
 <template>
-  <main>
-  </main>
+  <div class="d-flex">You are at Home page</div>
 </template>
