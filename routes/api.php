@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\V1\TaskController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\TaskController;
+use App\Http\Controllers\Api\V1\StatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::group(['prefix'=>'v1'], function(){
-    Route::apiResource('tasks',TaskController::class );
+    Route::apiResource('tasks',TaskController::class);
+    Route::apiResource('status',StatusController::class);
+    // ->only(['store','show', 'update', 'destroy']);
 });
