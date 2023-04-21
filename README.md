@@ -54,7 +54,7 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🚀 Screenshort <a name="live-demo"></a>
-![Alt text](laravel.jpg?raw=true "Optional Title")
+![Alt text](./Screenshot.jpg "Optional Title")
 
 <!-- LIVE DEMO -->
 
